@@ -21,4 +21,11 @@ router.put('/:id', authMiddleware, productController.updateProduct);
 // DELETE /products/:id (Delete a product)
 router.delete('/:id',authMiddleware,  productController.deleteProduct);
 
+// DELETE /products/ (Delete all products)
+router.delete('/',authMiddleware,  productController.deleteProducts);
+
+// GET /products/:name (Read a product by NAME)
+router.get('/:name', productController.getProductByName);
+
+
 module.exports = router;

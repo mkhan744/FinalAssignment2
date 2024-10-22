@@ -98,3 +98,29 @@ exports.deleteProduct = async (req, res) => {
         res.status(500).json({message: error.message});
     }
 }
+
+
+//DELETE /api/products/
+exports.deleteProducts = async (req, res) => {
+    try {
+        await Product.deleteMany({});
+        res.json({ message: 'Products deleted successfully' });
+    } catch (err) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+//GET /api/products/:name
+exports.getProductByName = async (req, res) => {
+    try {
+        const product = await Product.find({ name: req.params.name }); 
+
+        if(product ===null){
+            return res.status(404).json({message: 'Product not found'});
+        }
+
+        res.json(product);
+    } catch(error){
+        res.status(500).json({message: error.message});
+    }
+}
